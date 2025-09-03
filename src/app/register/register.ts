@@ -28,11 +28,17 @@ export class Register {
     name: ['', Validators.required],
     surname: ['', Validators.required],
     address: ['', Validators.required],
-    dni: ['', [Validators.required, Validators.min(9999999)]],
+    dni: ['', [Validators.required, Validators.min(999999)]],
     postalCode: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(5)]],
-    passwordConfirm: ['', [Validators.required, Validators.minLength(5)]],
+    password: [
+      '',
+      [Validators.required, Validators.minLength(5), Validators.maxLength(25)],
+    ],
+    passwordConfirm: [
+      '',
+      [Validators.required, Validators.minLength(5), Validators.maxLength(25)],
+    ],
   });
   constructor() {}
 
@@ -42,6 +48,7 @@ export class Register {
    */
   onSubmit() {
     this.submitted = true;
+    this.passwordError = false;
     if (this.registerForm.invalid) return;
     if (
       this.registerForm.value.password !==
@@ -50,7 +57,16 @@ export class Register {
       this.passwordError = true;
       return;
     }
-    console.log(this.registerForm.value);
+    const postValues = {
+      name: this.registerForm.value.name,
+      surname: this.registerForm.value.surname,
+      address: this.registerForm.value.address,
+      dni: this.registerForm.value.dni,
+      postalCode: this.registerForm.value.postalCode,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password,
+    };
+    console.log(postValues);
   }
 
   /**

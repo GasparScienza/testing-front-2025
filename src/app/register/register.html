@@ -1,7 +1,12 @@
 <div class="d-flex justify-content-center">
   <div class="card" style="width: 450px">
     <div class="card-body">
-      <h5 class="card-title text-center">Crear Cuenta</h5>
+      <div class="d-flex justify-content-center">
+        <h5 class="card-title text-center w-50 mb-4 text-bg-danger rounded">
+          Crear Cuenta
+        </h5>
+      </div>
+
       <form action="" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-6">
@@ -140,14 +145,13 @@
             </div>
             }
           </div>
-          @if (passwordError && submitted) {
-          <div class="invalid-feedback mb-3">
-            <small>Las contraseñas no coinciden</small>
-          </div>
-          }
         </div>
-
-        <div class="mt-4 mb-3">
+        @if (passwordError && submitted) {
+        <div class="text-danger text-center mt-2">
+          <small>Las contraseñas no coinciden</small>
+        </div>
+        }
+        <div class="mt-2 mb-3">
           <button class="btn btn-danger w-100">Crear Cuenta</button>
         </div>
         <div class="text-center">
