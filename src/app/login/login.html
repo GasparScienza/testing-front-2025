@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="card" style="width: 450px">
+    <div class="card-body">
+      <h5 class="card-title text-center">Crear Cuenta</h5>
+      <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="correo" class="form-label">Correo Electrónico</label>
+          <input
+            type="email"
+            class="form-control"
+            id="correo"
+            required
+            formControlName="email"
+            [class.is-invalid]="validoCampo('email') && submitted"
+          />
+          @if (validoCampo('email')) {
+          <div class="invalid-feedback">
+            <small>Este campo es obligatorio</small>
+          </div>
+          }
+        </div>
+
+        <div class="">
+          <label for="contrasena" class="form-label">Contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            id="contrasena"
+            required
+            formControlName="password"
+            [class.is-invalid]="validoCampo('password') && submitted"
+          />
+          @if (validoCampo('password')) {
+          <div class="invalid-feedback">
+            <small>Este campo es obligatorio</small>
+          </div>
+          }
+        </div>
+        <div class="mt-4 mb-3">
+          <button class="btn btn-danger w-100">Iniciar Sesión</button>
+        </div>
+        <div class="text-center">
+          <a [routerLink]="'/register'" class="text-black"
+            >No tienes cuenta? Regístrate desde aquí</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
