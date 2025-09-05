@@ -1,0 +1,35 @@
+:host ::ng-deep .fc {
+  max-width: 100%; /* ancho total */
+  height: 90vh; /* casi toda la pantalla */
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+}
+:host ::ng-deep .fc .fc-button-primary {
+  background-color: #d23242; /* color normal */
+  border-color: #d23242;
+  color: white; /* texto blanco */
+}
+
+:host ::ng-deep .fc .fc-button-primary:not(:disabled).fc-button-active,
+:host ::ng-deep .fc .fc-button-primary:not(:disabled):active {
+  background-color: #a71d2a; /* color cuando presionas o está activo */
+  border-color: #a71d2a;
+  color: white;
+}
+
+:host ::ng-deep .fc .fc-button-primary:hover {
+  background-color: #b02838; /* color al pasar el mouse */
+  border-color: #b02838;
+  color: white;
+}
+
+:host ::ng-deep .fc-scrollgrid-sync-inner a {
+  color: #a71d2a;
+  text-decoration: none;
+}
+
+:host ::ng-deep .fc-event-main {
+  background-color: #d23242;
+}
