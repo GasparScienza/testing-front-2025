@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+</div>
+
+<!-- Modal para ver evento -->
+<div class="modal fade" id="eventoModal" tabindex="-1" aria-labelledby="eventoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="eventoModalLabel">Detalles del Turno</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>🐾 Mascota / Servicio:</strong> {{ selectedEvent?.title }}</p>
+        <p><strong>📅 Fecha:</strong> {{ selectedEvent?.fecha | date: 'fullDate' }}</p>
+        <p *ngIf="selectedEvent?.descripcion"><strong>📝 Detalles:</strong> {{ selectedEvent?.descripcion }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para crear nuevo turno -->
+<div class="modal fade" id="nuevoTurnoModal" tabindex="-1" aria-labelledby="nuevoTurnoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="nuevoTurnoModalLabel">Nuevo Turno</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Nombre de la mascota</label>
+          <input type="text" class="form-control" [(ngModel)]="turnoTemporal.mascota" placeholder="Ej: Rocky">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Detalles</label>
+          <textarea class="form-control" [(ngModel)]="turnoTemporal.descripcion" placeholder="Ej: Consulta general"></textarea>
+        </div>
+        <p><strong>Fecha seleccionada:</strong> {{ selectedEvent?.fecha | date: 'fullDate' }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success btn-danger" (click)="agregarTurno()">Agregar Turno</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
