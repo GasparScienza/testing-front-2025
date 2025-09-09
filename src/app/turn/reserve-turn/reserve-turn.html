@@ -1,0 +1,145 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-lg-7">
+      <div class="card w-100">
+        <div class="card-body">
+          <h5 class="card-title">Selecciona una fecha</h5>
+          <p class="card-text">Elige el día para tu cita veterinaria</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-6 mb-3 mb-md-0">
+                <mat-card class="demo-inline-calendar-card" style="width: auto">
+                  <mat-calendar
+                    [minDate]="hoy"
+                    [(selected)]="fechaSelected"
+                    (selectedChange)="onSelectedDate($event)"
+                  ></mat-calendar>
+                </mat-card>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Horarios Disponibles</h5>
+                    <div class="d-flex flex-wrap gap-2 justify-content-center">
+                      @for (horario of horarios; track $index) {
+                      <button
+                        class="btn btn-outline-secondary"
+                        [disabled]="!horario.disponible"
+                        (click)="seleccionado.set(horario.hora)"
+                      >
+                        {{ horario.hora }}
+                      </button>
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-5 mt-3 mt-lg-0">
+      <div class="card" style="background-color: var(--mat-sys-surface)">
+        <div class="card-body text-start">
+          <h5 class="card-title text-center">Turno</h5>
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-xl-6">
+                <label for="">Fecha:</label>
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <p class="card-text">
+                      {{ fechaSelected() | date : "dd/MM/yyyy" }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-xl-6">
+                <label for="">Hora:</label>
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <p class="card-text">{{ seleccionado() }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12 col-xl-6">
+                  <label for="mascota">Mascota:</label>
+                  <select
+                    name="mascota"
+                    id="mascota"
+                    formControlName="mascota"
+                    class="form-select mb-2"
+                    [class.is-invalid]="validoCampo('mascota') && submitted"
+                  >
+                    <option value="" disabled selected>
+                      Selecciona una mascota
+                    </option>
+                    @for (mascota of mascotas; track $index) {
+                    <option [value]="mascota.id">
+                      {{ mascota.nombre }}
+                    </option>
+                    }
+                  </select>
+                  @if (validoCampo('mascota')) {
+                  <div class="invalid-feedback">
+                    <small>Este campo es obligatorio</small>
+                  </div>
+                  }
+                  <a class="text-danger mb-5">Agregar mascota nueva</a>
+                </div>
+                <div class="col-12 col-xl-6">
+                  <label for="servicio">Servicio:</label>
+                  <select
+                    name="servicio"
+                    id="servicio"
+                    class="form-select"
+                    formControlName="servicio"
+                    [class.is-invalid]="validoCampo('servicio') && submitted"
+                  >
+                    <option value="" disabled selected>
+                      Selecciona un servicio
+                    </option>
+                    @for (servicio of servicios; track $index) {
+                    <option [value]="servicio.id">
+                      {{ servicio.nombre }}
+                    </option>
+                    }
+                  </select>
+                  @if (validoCampo('servicio')) {
+                  <div class="invalid-feedback">
+                    <small>Este campo es obligatorio</small>
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="container-fluid mb-3 mt-3">
+              <label for="textArea">Descripcion:</label>
+              <textarea
+                class="form-control"
+                rows="3"
+                id="textArea"
+                formControlName="descripcion"
+              ></textarea>
+            </div>
+            <button
+              class="btn btn-danger mt-2 w-100"
+              [disabled]="!fechaSelected() || !seleccionado()"
+            >
+              Confirmar Cita
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

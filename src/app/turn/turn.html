@@ -1,0 +1,28 @@
+<div class="text-center">
+  <h2>Reserva tu cita veterinaria</h2>
+  <p>
+    Selecciona el día y horario que mejor se adapte a ti. Nuestro equipo de
+    profesionales está listo para cuidar de tu mascota.
+  </p>
+  <div class="p-1">
+    <div class="btn-group d-flex mb-2" role="group">
+      <button
+        class="btn btn-outline-danger"
+        (click)="reservarCita()"
+        [ngClass]="{ active: reservaCita }"
+      >
+        Reservar Cita
+      </button>
+      <button
+        class="btn btn-outline-danger"
+        (click)="misCitas()"
+        [ngClass]="{ active: !reservaCita }"
+      >
+        Mis Citas
+      </button>
+    </div>
+    @if (reservaCita) {
+    <app-reserve-turn></app-reserve-turn>
+    }
+  </div>
+</div>
