@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-center">
+  <div class="card" style="width: 60%">
+    <div class="card-body">
+      <h4 class="card-title text-center">Agregar Mascota</h4>
+      <form action="" [formGroup]="createMascota">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-6">
+              <label for="name" class>*Nombre:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                formControlName="name"
+              />
+            </div>
+            <div class="col-6">
+              <label for="especie">*Especie</label>
+              <select
+                name="especie"
+                id="especie"
+                class="form-select"
+                formControlName="specie"
+              >
+                <option [ngValue]="null" disabled>
+                  Seleccione una especie
+                </option>
+                <option [ngValue]="1">Perro</option>
+                <option [ngValue]="2">Gato</option>
+                <option [ngValue]="3">Caballo</option>
+                <option [ngValue]="4">Cabra</option>
+              </select>
+            </div>
+          </div>
+          <div class="row my-4 align-items-center">
+            <div class="col-6">
+              <label for="peso">*Peso:</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="peso"
+              />
+            </div>
+            <div class="col-6">
+              <label for="fecha_nac">*Fecha Nacimiento:</label>
+              <input type="date" class="form-control" formControlName="date" />
+            </div>
+          </div>
+          <label for="">*Sexo:</label>
+          <div
+            class="d-flex flex-fill gap-3 justify-content-start align-items-center"
+          >
+            <label for="masculino">Masculino</label>
+            <input
+              type="radio"
+              formControlName="sex"
+              id="masculino"
+              [value]="0"
+            />
+            <label for="femenino">Femenino</label>
+            <input
+              type="radio"
+              formControlName="sex"
+              id="femenino"
+              [value]="1"
+            />
+          </div>
+          <div class="d-flex justify-content-center mt-4">
+            <button
+              class="btn btn-danger"
+              style="width: 50%"
+              (click)="onSubmit()"
+            >
+              Agregar Mascota
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

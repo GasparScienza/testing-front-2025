@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Turn {
-  public reservaCita = false;
+  public reservaCita = true;
   public citas = false;
 
   reservarCita() {

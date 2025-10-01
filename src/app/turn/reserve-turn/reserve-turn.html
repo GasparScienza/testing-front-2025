@@ -24,7 +24,8 @@
                       @for (horario of horarios; track $index) {
                       <button
                         class="btn btn-outline-secondary"
-                        [disabled]="!horario.disponible"
+                        [disabled]="!horario.disponible || !habHorarios"
+                        [ngClass]="{ active: seleccionado() === horario.hora }"
                         (click)="seleccionado.set(horario.hora)"
                       >
                         {{ horario.hora }}

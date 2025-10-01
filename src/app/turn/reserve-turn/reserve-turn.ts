@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import {
   FormBuilder,
@@ -13,7 +13,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-reserve-turn',
-  imports: [MatCardModule, MatDatepickerModule, DatePipe, ReactiveFormsModule],
+  imports: [
+    MatCardModule,
+    MatDatepickerModule,
+    DatePipe,
+    ReactiveFormsModule,
+    CommonModule,
+  ],
   templateUrl: './reserve-turn.html',
   styleUrl: './reserve-turn.css',
   providers: [provideNativeDateAdapter(), DatePipe],
@@ -22,8 +28,16 @@ export class ReserveTurn {
   private formBuilder = inject(FormBuilder);
 
   public submitted = false;
+  public mascotas: any[] = [];
+  public servicios: any[] = [];
+  public horarios: any[] = [];
+  public habHorarios = false;
 
-  constructor(private datePipe: DatePipe, private turnSvc: TurnSvc) {}
+  constructor(private datePipe: DatePipe, private turnSvc: TurnSvc) {
+    this.mascotas = this.turnSvc.getMascotas();
+    this.servicios = this.turnSvc.getServicios();
+    this.horarios = this.turnSvc.getHorarios();
+  }
   fechaFormateada: string | null = null;
   fechaSelected = signal<Date | null>(null);
   seleccionado = signal<string | null>(null);
@@ -35,39 +49,10 @@ export class ReserveTurn {
     mascota: ['', Validators.required],
   });
 
-  public horarios = [
-    { hora: '08:00', disponible: true },
-    { hora: '09:00', disponible: true },
-    { hora: '10:00', disponible: true },
-    { hora: '11:00', disponible: false },
-    { hora: '12:00', disponible: true },
-    { hora: '13:00', disponible: false },
-    { hora: '14:00', disponible: true },
-    { hora: '15:00', disponible: true },
-    { hora: '16:00', disponible: false },
-    { hora: '17:00', disponible: true },
-    { hora: '18:00', disponible: true },
-    { hora: '19:00', disponible: true },
-    { hora: '20:00', disponible: false },
-  ];
-
-  public mascotas = [
-    { id: 1, nombre: 'Firulais' },
-    { id: 2, nombre: 'Michi' },
-    { id: 3, nombre: 'Rex' },
-  ];
-
-  public servicios = [
-    { id: 1, nombre: 'Consulta General' },
-    { id: 2, nombre: 'Vacunación' },
-    { id: 3, nombre: 'Desparasitación' },
-    { id: 4, nombre: 'Cirugía Menor' },
-    { id: 5, nombre: 'Atención de Emergencia' },
-  ];
-
   onSelectedDate = (date: Date) => {
     this.fechaFormateada = this.datePipe.transform(date, 'dd/MM/yyyy');
     this.fechaSelected.set(date);
+    this.habHorarios = true;
   };
 
   onSubmit = () => {
