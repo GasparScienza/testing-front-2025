@@ -4,7 +4,7 @@ import { Register } from './register/register';
 import { Login } from './login/login';
 import { Turn } from './turn/turn';
 import { PortalCliente } from './portal-cliente/portal-cliente';
-import { Mascota } from './portal-cliente/mascota/mascota';
+import { Mascota } from './portal-cliente/edit-mascota/edit-mascota';
 
 export const routes: Routes = [
   { path: '', component: LandingPage }, // Inicio

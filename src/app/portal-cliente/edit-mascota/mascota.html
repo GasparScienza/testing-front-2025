@@ -66,13 +66,27 @@
             />
           </div>
           <div class="d-flex justify-content-center mt-4">
-            <button
-              class="btn btn-danger"
-              style="width: 50%"
-              (click)="onSubmit()"
-            >
-              Agregar Mascota
-            </button>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-3 text-center">
+                  <button
+                    class="btn btn-outline-secondary"
+                    [routerLink]="'/cliente'"
+                  >
+                    Volver
+                  </button>
+                </div>
+                <div class="col-9">
+                  <button
+                    class="btn btn-danger"
+                    style="width: 60%"
+                    (click)="onSubmit()"
+                  >
+                    Agregar Mascota
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </form>

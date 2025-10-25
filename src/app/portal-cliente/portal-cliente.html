@@ -11,6 +11,9 @@
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Datos Mascotas</h5>
+          @for (mascota of mascotas; track $index) {
+          <app-card-mascota [mascota]="mascota" />
+          }
           <button
             class="btn btn-outline-danger"
             style="width: 75%"
@@ -22,4 +25,7 @@
       </div>
     </div>
   </div>
+</div>
+<div class="m-3 d-flex justify-content-start" [routerLink]="'/'">
+  <button class="btn btn-outline-secondary">Volver</button>
 </div>

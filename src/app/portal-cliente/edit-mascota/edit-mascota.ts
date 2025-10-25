@@ -6,10 +6,11 @@ import {
   ɵInternalFormsSharedModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-mascota',
-  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule],
+  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule, RouterLink],
   templateUrl: './mascota.html',
   styleUrl: './mascota.css',
 })
