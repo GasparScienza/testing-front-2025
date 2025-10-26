@@ -9,6 +9,14 @@ export class LoginService {
   private apiUrl = 'http://localhost:3000/auth/login';
 
   login(email: string, password: string) {
-    return this.http.post(this.apiUrl, { email, password });
+    return this.http.post(
+      this.apiUrl,
+      { email, password },
+      { withCredentials: true }
+    );
+  }
+
+  me() {
+    return this.http.get('http://localhost:3000/auth/me');
   }
 }

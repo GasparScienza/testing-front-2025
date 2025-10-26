@@ -38,6 +38,17 @@ export class Login {
     });
   }
 
+  me() {
+    this.loginService.me().subscribe({
+      next: (response) => {
+        console.log('User data:', response);
+      },
+      error: (error) => {
+        console.error('Failed to fetch user data:', error);
+      },
+    });
+  }
+
   /**
    * Valida campos del formulario
    * @param campo
